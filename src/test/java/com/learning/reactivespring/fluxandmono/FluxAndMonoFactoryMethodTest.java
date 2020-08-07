@@ -16,11 +16,11 @@ public class FluxAndMonoFactoryMethodTest {
     public void fluxFactoryMethods() {
         String[] strings = {"one", "two", "three"};
         List<String> stringList = Arrays.asList(strings);
-        Stream<String> stramList = stringList.stream();
+        Stream<String> streamList = stringList.stream();
 
         Flux<String> arrFlux = Flux.fromArray(strings);
         Flux<String> listFlux = Flux.fromIterable(stringList);
-        Flux<String> streamFlux = Flux.fromStream(stramList);
+        Flux<String> streamFlux = Flux.fromStream(streamList);
 
         fluxStepVerify(arrFlux);
         fluxStepVerify(listFlux);

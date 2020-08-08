@@ -32,6 +32,21 @@ public class FluxControlRequestAndCancelTest {
     }
 
     @Test
+    public void directMultipleRequestWithCancle() {
+        Flux<Integer> integerFlux = Flux.range(1, 10).log();
+
+        integerFlux.subscribe(
+                System.out::println,
+                System.err::println,
+                () -> System.out.println("Done"),
+                subscription -> {
+                    subscription.request(3);
+                    subscription.cancel();
+                }
+        );
+    }
+
+    @Test
     public void customRequestAndCancel() {
         Flux<Integer> integerFlux = Flux.range(1, 10).log();
 

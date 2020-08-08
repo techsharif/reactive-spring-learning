@@ -18,4 +18,19 @@ public class FluxFilterTest {
                 .verifyComplete();
 
     }
+
+    @Test
+    public void fluxFilterWithRepeat() {
+
+        Flux<Integer> rangeFlux = Flux
+                .range(1, 10)
+                .repeat(1)
+                .filter(n -> n > 5)
+                .log();
+
+        StepVerifier.create(rangeFlux)
+                .expectNextCount(10)
+                .verifyComplete();
+
+    }
 }
